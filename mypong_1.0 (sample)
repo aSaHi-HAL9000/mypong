@@ -24,8 +24,8 @@ HOSTNAME3=(M-RO-01 M-RO-01 M-SV-05 M-WS-10)
 STANDORTNAME=(Hamburg Berlin Frankfurt)
 
 STATUS=( )
-   RESULT=(NA NA NA NA NA NA NA NA NA NA NA)
-     ZEIT=( )
+RESULT=(NA NA NA NA NA NA NA NA NA NA NA)
+  ZEIT=( )
 
 # Variablen für den Host-Status
 GOOD="$GRN OK! $NRM"
@@ -42,17 +42,17 @@ do
 #echo -n "aktualisiere Hamburg"; sleep 1
 STATUS0=" "
 ping ${HOSTIP0[0]} -v -c1 -w1 > ${RESULT[0]}
-	if [ $? -eq 0 ]
+if [ $? -eq 0 ]
 	then STATUS0=$GOOD && ZEIT[0]=$(cat ${RESULT[0]} | head -2l | tail -1l | cut -d"=" -f4)  	 	 
 		elif [ $? -eq 1 ]
-		then STATUS0=$BAD
+			then STATUS0=$BAD
 	else STATUS0=$FAIL
 fi
 STATUS1=" "
 ping ${HOSTIP0[1]} -v -c1 -w1 > ${RESULT[1]}
 if [ $? -eq 0 ]
 	then STATUS1=$GOOD && ZEIT[1]=$(cat ${RESULT[1]} | head -2l | tail -1l | cut -d"=" -f4)
-	 	elif [ $? -eq 1 ]
+	 		elif [ $? -eq 1 ]
 		then STATUS1=$BAD
 	else STATUS1=$FAIL
 fi
@@ -61,7 +61,7 @@ STATUS2=" "
 ping ${HOSTIP0[2]} -v -c1 -w1 > ${RESULT[2]}
 if [ $? -eq 0 ]
 	then STATUS2=$GOOD && ZEIT[2]=$(cat ${RESULT[2]} | head -2l | tail -1l | cut -d"=" -f4)
-	 	elif [ $? -eq 1 ]
+	 		elif [ $? -eq 1 ]
 		then STATUS2=$BAD
 	else STATUS2=$FAIL
 fi
@@ -70,7 +70,7 @@ STATUS3=" "
 ping ${HOSTIP0[3]} -v -c1 -w1 > ${RESULT[3]}
 if [ $? -eq 0 ]
 	then STATUS3=$GOOD && ZEIT[3]=$(cat ${RESULT[3]} | head -2l | tail -1l | cut -d"=" -f4)
-	 	elif [ $? -eq 1 ]
+	 		elif [ $? -eq 1 ]
 		then STATUS3=$BAD
 	else STATUS3=$FAIL
 fi
