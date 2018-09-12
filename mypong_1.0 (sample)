@@ -44,7 +44,8 @@ do
 STATUS0=" "
 ping ${HOSTIP0[0]} -v -c1 -w1 > ${RESULT[0]}
 	if [ $? -eq 0 ]
-	then STATUS0=$GOOD && ZEIT[0]=$(cat ${RESULT[0]} | head -2l | tail -1l | cut -d"=" -f4)  	 	 elif [ $? -eq 1 ]
+	then STATUS0=$GOOD && ZEIT[0]=$(cat ${RESULT[0]} | head -2l | tail -1l | cut -d"=" -f4)  	 	 
+		elif [ $? -eq 1 ]
 		then STATUS0=$BAD
 	else STATUS0=$FAIL
 fi
