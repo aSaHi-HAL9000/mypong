@@ -33,10 +33,9 @@ GOOD="$GRN OK! $NRM"
 FAIL="$ROT ERROR! $NRM"
 
 # Hilfsvariable für die Endlosschleife
-NASE=`date +%Y`
 
 clear
-while [ $NASE -eq 2018 ]
+while [ true ]
 do
 
 # Variante IF/THEN/ELIF/ELSE
