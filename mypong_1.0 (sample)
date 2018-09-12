@@ -1,0 +1,176 @@
+#!/bin/bash
+#mypong
+
+# Variablen für die Statusfarben
+GRN='\033[0;32m'
+GLB='\033[0;33m'
+ROT='\033[0;31m'
+BLU='\033[0;34m'
+MAG='\033[0;46m'
+NRM='\033[0m'
+KRV='\033[4;37m'
+
+# Arrays für IP, Hostname, Standortname und Ping-Resultate und -Zeiten
+HOSTIP0=(192.168.104.10 192.168.104.13 193.168.104.20 192.168.104.1)
+HOSTIP1=(193.168.104.5 192.168.104.28 192.168.104.34 192.168.104.36)
+HOSTIP2=(192.168.104.39 192.168.104.38 192.168.104.44 192.168.104.34)
+HOSTIP3=(192.168.104.39 192.168.104.44 192.168.104.62 192.168.104.73)
+
+HOSTNAME0=(HH-RO-01 HH-RO-01 HH-SV-05 HH-WS-10)
+HOSTNAME1=(B-RO-01 B-RO-01 B-SV-05 B-WS-10)
+HOSTNAME2=(F-RO-01 F-RO-01 F-SV-05 F-WS-10)
+HOSTNAME3=(M-RO-01 M-RO-01 M-SV-05 M-WS-10)
+
+STANDORTNAME=(Hamburg Berlin Frankfurt)
+
+STATUS=( )
+   RESULT=(NA NA NA NA NA NA NA NA NA NA NA)
+     ZEIT=( )
+
+# Variablen für den Host-Status
+GOOD="$GRN OK! $NRM"
+ BAD="$ROT BAD! $NRM"
+FAIL="$ROT ERROR! $NRM"
+
+# Hilfsvariable für die Endlosschleife
+NASE=`date +%Y`
+
+clear
+while [ $NASE -eq 2018 ]
+do
+
+# Variante IF/THEN/ELIF/ELSE
+#echo -n "aktualisiere Hamburg"; sleep 1
+STATUS0=" "
+ping ${HOSTIP0[0]} -v -c1 -w1 > ${RESULT[0]}
+	if [ $? -eq 0 ]
+	then STATUS0=$GOOD && ZEIT[0]=$(cat ${RESULT[0]} | head -2l | tail -1l | cut -d"=" -f4)  	 	 elif [ $? -eq 1 ]
+		then STATUS0=$BAD
+	else STATUS0=$FAIL
+fi
+STATUS1=" "
+ping ${HOSTIP0[1]} -v -c1 -w1 > ${RESULT[1]}
+if [ $? -eq 0 ]
+	then STATUS1=$GOOD && ZEIT[1]=$(cat ${RESULT[1]} | head -2l | tail -1l | cut -d"=" -f4)
+	 	elif [ $? -eq 1 ]
+		then STATUS1=$BAD
+	else STATUS1=$FAIL
+fi
+
+STATUS2=" "
+ping ${HOSTIP0[2]} -v -c1 -w1 > ${RESULT[2]}
+if [ $? -eq 0 ]
+	then STATUS2=$GOOD && ZEIT[2]=$(cat ${RESULT[2]} | head -2l | tail -1l | cut -d"=" -f4)
+	 	elif [ $? -eq 1 ]
+		then STATUS2=$BAD
+	else STATUS2=$FAIL
+fi
+
+STATUS3=" "
+ping ${HOSTIP0[3]} -v -c1 -w1 > ${RESULT[3]}
+if [ $? -eq 0 ]
+	then STATUS3=$GOOD && ZEIT[3]=$(cat ${RESULT[3]} | head -2l | tail -1l | cut -d"=" -f4)
+	 	elif [ $? -eq 1 ]
+		then STATUS3=$BAD
+	else STATUS3=$FAIL
+fi
+
+#Variante CASE
+#echo -n ", Berlin"; sleep 1
+STATUS4=" "
+ping ${HOSTIP1[0]} -v -c1 -w1 > ${RESULT[4]}
+case $? in
+	0) STATUS4=$GOOD && ZEIT[4]=$(cat ${RESULT[4]} | head -2l | tail -1l | cut -d"=" -f4);;
+	1) STATUS4=$BAD;;
+	2) STATUS4=$FAIL;;
+esac
+
+STATUS5=" "
+ping ${HOSTIP1[1]} -v -c1 -w1 > ${RESULT[5]}
+case $? in
+	0) STATUS5=$GOOD && ZEIT[5]=$(cat ${RESULT[5]} | head -2l | tail -1l | cut -d"=" -f4);;
+	1) STATUS5=$BAD;;
+	2) STATUS5=$FAIL;;
+esac
+
+STATUS6=" "
+ping ${HOSTIP1[2]} -v -c1 -w1 > ${RESULT[6]}
+case $? in
+	0) STATUS6=$GOOD && ZEIT[6]=$(cat ${RESULT[6]} | head -2l | tail -1l | cut -d"=" -f4);;
+	1) STATUS6=$BAD;;
+	2) STATUS6=$FAIL;
+esac
+
+STATUS7=" "
+ping ${HOSTIP1[3]} -v -c1 -w1 > ${RESULT[7]}
+case $? in
+	0) STATUS7=$GOOD && ZEIT[7]=$(cat ${RESULT[7]} | head -2l | tail -1l | cut -d"=" -f4);;
+	1) STATUS7=$BAD;;
+	2) STATUS7=$FAIL;;
+esac
+
+#Frankfurt
+#echo -n ", Frankfurt"
+STATUS8=" "
+ping ${HOSTIP2[0]} -v -c1 -w1 > ${RESULT[8]}
+case $? in
+	0) STATUS8=$GOOD && ZEIT[8]=$(cat ${RESULT[8]} | head -2l | tail -1l | cut -d"=" -f4);;
+	1) STATUS8=$BAD;;
+	2) STATUS8=$FAIL;;
+esac
+
+STATUS9=" "
+ping ${HOSTIP2[1]} -v -c1 -w1 > ${RESULT[9]}
+case $? in
+	0) STATUS9=$GOOD && ZEIT[9]=$(cat ${RESULT[9]} | head -2l | tail -1l | cut -d"=" -f4);;
+	1) STATUS9=$BAD;;
+	2) STATUS9=$FAIL;;
+esac
+
+STATUS10=" "
+ping ${HOSTIP2[2]} -v -c1 -w1 > ${RESULT[10]}
+case $? in
+	0) STATUS10=$GOOD && ZEIT[10]=$(cat ${RESULT[10]} | head -2l | tail -1l | cut -d"=" -f4);;
+	1) STATUS10=$BAD;;
+	2) STATUS10=$FAIL;;
+esac
+
+STATUS11=" "
+ping ${HOSTIP2[3]} -v -c1 -w1 > ${RESULT[11]}
+case $? in
+	0) STATUS11=$GOOD && ZEIT[11]=$(cat ${RESULT[11]} | head -2l | tail -1l | cut -d"=" -f4);;
+	1) STATUS11=$BAD;;
+	2) STATUS11=$FAIL;;
+esac
+
+clear
+echo -e "____________________________________________________"
+echo -e "						     "
+echo -e "                     MyPong v1.0 		     "
+echo -e "____________________________________________________"
+echo -e "			      			     "
+echo -e "	    					     "
+echo -e " 		$KRV${STANDORTNAME[0]}$NRM           "
+echo -e " 		${HOSTNAME0[0]}:${STATUS0} ${ZEIT[0]}"
+echo -e " 		${HOSTNAME0[1]}:${STATUS1} ${ZEIT[1]}"
+echo -e " 		${HOSTNAME0[2]}:${STATUS2} ${ZEIT[2]}"
+echo -e " 		${HOSTNAME0[3]}:${STATUS3} ${ZEIT[3]}"
+echo -e "						     "
+echo -e " 		$KRV${STANDORTNAME[1]}$NRM	     "
+echo -e " 		${HOSTNAME1[0]} :${STATUS4} ${ZEIT[4]}"
+echo -e " 		${HOSTNAME1[1]} :${STATUS5} ${ZEIT[5]}"
+echo -e " 		${HOSTNAME1[2]} :${STATUS6} ${ZEIT[6]}"
+echo -e " 		${HOSTNAME1[3]} :${STATUS7} ${ZEIT[7]}"
+echo -e "						     "
+echo -e " 		$KRV${STANDORTNAME[2]}$NRM	     "
+echo -e " 		${HOSTNAME2[0]} :${STATUS8} ${ZEIT[8]}"
+echo -e " 		${HOSTNAME2[1]} :${STATUS9} ${ZEIT[9]}"
+echo -e " 		${HOSTNAME2[2]} :${STATUS10} ${ZEIT[10]}"
+echo -e " 		${HOSTNAME2[3]} :${STATUS11} ${ZEIT[11]}"
+echo -e "						     "
+echo -e "____________________________________________________"
+#echo -n "."; sleep 1; echo -n "."; sleep 1; echo -n "."; sleep 1
+done
+
+
+
