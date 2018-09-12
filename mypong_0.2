@@ -1,0 +1,40 @@
+#!/bin/bash
+#mypong v0.2
+
+#################################################################################################
+#												#
+# For hints, suggestions or bug reporting just contact me via Github (aSaHi-HAL9000) or send an #
+# email to: aSaHi.HAL9000@googlemail.com 							#
+#												#
+# DO NOT FORGET TO MAKE THE SCRIPT EXECUTABLE!
+#												#
+#################################################################################################
+
+GRN='\033[0;32m'
+RED='\033[0;31m'
+NRM='\033[0m'
+
+GOOD="$GRN OK! $NRM"
+ BAD="$RED BAD! $NRM"
+
+
+clear
+echo "**********************************"
+echo "*          mypong v0.2           *"
+echo "**********************************"
+read -p "Please enter the IP of the server to be monitored: " IP
+
+while [ true ]
+do
+	ping -c1 -w1 $IP > /dev/null
+	if [ $? -eq 0 ]
+		then STATUS=$GOOD
+	 	else STATUS=$BAD
+	fi
+clear
+echo -e "**********************************"
+echo -e "*          mypong v0.2           *"
+echo -e "**********************************"
+echo -e "Status of $IP is  $STATUS"
+sleep 5 				# change this value to the desired int ervall in seconds
+done
