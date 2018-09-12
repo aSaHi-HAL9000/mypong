@@ -1,5 +1,5 @@
 #!/bin/bash
-#mypong
+#mypong v1.0
 
 # Variablen für die Statusfarben
 GRN='\033[0;32m'
