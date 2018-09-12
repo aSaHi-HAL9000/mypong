@@ -1,0 +1,47 @@
+#!/bin/bash
+#mypong v0.3
+
+#################################################################################################
+#												                                                                        #
+# For hints, suggestions or bug reporting just contact me via Github (aSaHi-HAL9000) or send an #
+# email to: aSaHi.HAL9000@googlemail.com 							                                          #
+#												                                                                        #
+# DO NOT FORGET TO MAKE THE SCRIPT EXECUTABLE!                                                  #
+#												                                                                        #
+#################################################################################################
+
+GRN='\033[0;32m'
+RED='\033[0;31m'
+NRM='\033[0m'
+
+GOOD="$GRN OK! $NRM"
+ BAD="$RED BAD! $NRM"
+FAIL="$RED ERROR!" $NRM
+
+STATUS=(NA)
+RESULT=(NA)
+  TIME=(NA)
+
+clear
+echo "**********************************"
+echo "*          mypong v0.3           *"
+echo "**********************************"
+read -p "Please enter the IP of the server to be monitored:" IP
+
+while [ true ]
+	do
+	STATUS[0]=" "
+	ping $IP -v -c1 -w1 > ${RESULT[0]}
+		case $? in
+			0) STATUS=$GOOD && TIME[0]=$(cat ${RESULT[0]} | head -2l | tail -1l | cut -d"=" -f4);;
+			1) STATUS=$BAD;;
+			2) STATUS=$FAIL;;
+esac
+clear
+echo -e "**********************************"
+echo -e "*          mypong v0.3           *"
+echo -e "**********************************"
+echo -e "Status of $IP is : ${STATUS[0]}"
+echo -e "Response time is       :  ${TIME[0]}"
+sleep 1                                           # change this value to the desired intervall in seconds
+done
